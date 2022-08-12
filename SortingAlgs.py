@@ -2,6 +2,7 @@ from statistics import mean
 import time
 from random import seed
 from random import randint
+
 class SortingAlgs:
     def swap(data, index1, index2):
         temp = data[index1]
@@ -87,7 +88,7 @@ class SortingAlgs:
 seed(1)
 def randArray(length):
     arr = []
-    for _ in range(length):
+    for x in range(length):
         arr.append(randint(0, length))
     return arr
 #
@@ -97,7 +98,7 @@ bubbleResult = []
 quickResult = []
 mergeResult = []
 numTrials = 100
-arrayLength = 1000
+arrayLength = 10000
 for trial in range(numTrials):
     arr = randArray(arrayLength)
     start = time.time_ns()
