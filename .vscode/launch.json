@@ -9,6 +9,13 @@
             "name": "Launch SortingAlgs",
             "request": "launch",
             "mainClass": "SortingAlgs",
+            "projectName": "sorting-algs_759b2392"
+        },
+        {
+            "type": "java",
+            "name": "Launch SortingAlgs",
+            "request": "launch",
+            "mainClass": "SortingAlgs",
             "projectName": "sorting-algs_91852022"
         },
         {

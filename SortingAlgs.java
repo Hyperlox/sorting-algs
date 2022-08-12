@@ -198,8 +198,8 @@ public class SortingAlgs
         return arr;
     }
 
-    public static int mean(ArrayList<Long> arr){
-        int sum = 0;
+    public static long mean(ArrayList<Long> arr){
+        long sum = 0;
         for (int i=0; i < arr.size(); i++){
             sum += arr.get(i);
         }
@@ -213,7 +213,7 @@ public class SortingAlgs
         ArrayList<Long> quickResult = new ArrayList<Long>();
         ArrayList<Long> mergeResult = new ArrayList<Long>();
         int numTrials = 100;
-        int arrayLength = 31622;
+        int arrayLength = 1000000;
 
         for (int trial = 0; trial < numTrials; trial++){
             int[] arr = randArray(arrayLength);
@@ -237,11 +237,11 @@ public class SortingAlgs
             
         }
 
-        int result = mean(bubbleResult);
+        long result = mean(bubbleResult);
         System.out.println("Elapsed time for bubble sort: " + result);
-        int result1 = mean(quickResult);
+        long result1 = mean(quickResult);
         System.out.println("Elapsed time for quick sort: " + result1);
-        int result2 = mean(mergeResult);
+        long result2 = mean(mergeResult);
         System.out.println("Elapsed time for merge sort: " + result2);
     }
 }
