@@ -1,59 +1,45 @@
 import java.lang.Math;
 
-public class Regression {
+public class NLogNRegression {
     double[] inputs, expected;
-    private double a = 0, b = 0;
+    private double a = 0;
     private final int numSteps = 10000000;
     final double delta = 0.01;
 
-    public static void main(String args[]) {
-        double[] inputs = new double[] { 100, 316, 1000, 3162, 10000, 31622, 100000 };
-        double[] expected = new double[] { 546315, 2024398, 8521453, 31024488, 99845631, 408382774, 1646129017 };
-        Regression regression = new Regression(inputs, expected);
-        System.out.println("R^2: " + regression.rSquared());
-    }
-
-    public Regression(double[] inputs, double[] expected) {
+    public NLogNRegression(double[] inputs, double[] expected) {
         if (inputs.length != expected.length) {
             throw new Error("Lengths are not equal");
         } else {
             this.inputs = inputs;
             this.expected = expected;
-            double aPlus, aMinus, bPlus, bMinus;
+            double aPlus, aMinus;
             for (int i = 0; i < numSteps; i++) {
-                aPlus = evaluate(a + delta, b, inputs, expected);
-                aMinus = evaluate(a - delta, b, inputs, expected);
+                aPlus = evaluate(a + delta, inputs, expected);
+                aMinus = evaluate(a - delta, inputs, expected);
                 if (aPlus < aMinus)
                     a += delta;
                 else
                     a -= delta;
-                bPlus = evaluate(a, b + delta, inputs, expected);
-                bMinus = evaluate(a, b - delta, inputs, expected);
-                if (bPlus < bMinus)
-                    b += delta;
-                else
-                    b -= delta;
             }
         }
-        // System.out.println("Chi squared: " + evaluate(a, b, inputs, expected));
-        System.out.println("a: " + a);
-        System.out.println("b: " + b);
+        System.out.println("Chi squared: " + evaluate(a, inputs, expected));
+        System.out.println("Formula: y=" + a + "xlog(x)");
     }
 
-    private double evaluate(double a, double b, double[] inputs, double[] expected) {
+    private double evaluate(double a, double[] inputs, double[] expected) {
         if (inputs.length != expected.length) {
             throw new Error("Lengths are not equal");
         } else {
             double[] observed = new double[inputs.length];
             for (int i = 0; i < inputs.length; i++) {
-                observed[i] = evaluateFunction(a, b, inputs[i]);
+                observed[i] = evaluateFunction(a, inputs[i]);
             }
             return chiSquared(expected, observed);
         }
     }
 
-    private double evaluateFunction(double a, double b, double n) {
-        return a * n * Math.log10(n) + b;
+    private double evaluateFunction(double a, double n) {
+        return a * n * Math.log10(n);
     }
 
     private double chiSquared(double[] expected, double[] observed) {
@@ -80,7 +66,7 @@ public class Regression {
         for (int i = 0; i < inputs.length; i++) {
             double value = inputs[i];
             double expectedValue = expected[i];
-            double predictedValue = evaluateFunction(a, b, value);
+            double predictedValue = evaluateFunction(a, value);
             total += Math.pow(expectedValue - predictedValue, 2);
         }
         return total;
