@@ -3,12 +3,12 @@ import java.lang.Math;
 public class Regression {
     double[] inputs, expected;
     private double a = 0, b = 0;
-    private final int numSteps = 10000;
+    private final int numSteps = 10000000;
     final double delta = 0.01;
 
     public static void main(String args[]) {
         double[] inputs = new double[] { 100, 316, 1000, 3162, 10000, 31622, 100000 };
-        double[] expected = new double[] { 8062, 21841, 67103, 197560, 619524, 2134712, 8272710 };
+        double[] expected = new double[] { 546315, 2024398, 8521453, 31024488, 99845631, 408382774, 1646129017 };
         Regression regression = new Regression(inputs, expected);
         System.out.println("R^2: " + regression.rSquared());
     }
