@@ -97,23 +97,27 @@ def randArray(length):
 bubbleResult = []
 quickResult = []
 mergeResult = []
-numTrials = 100
+numTrials = 1
 arrayLength = 10000
 for trial in range(numTrials):
     arr = randArray(arrayLength)
 
-    start2 = time.time_ns()
-    SortingAlgs.quickSort(arr.copy())
-    end2 = time.time()
-    quickResult.append(end2 - start2)
+    start = time.time_ns()
+    SortingAlgs.bubbleSort(arr.copy())
+    end = time.time_ns()
+    bubbleResult.append(end-start)
+    # start2 = time.time_ns()
+    # SortingAlgs.quickSort(arr.copy())
+    # end2 = time.time()
+    # quickResult.append(end2 - start2)
 
     # start3=time.time()
     # SortingAlgs.mergeSort(arr.copy())
     # end3 = time.time()
     # mergeResult.append(end3-start3)
 
-# print("Bubble sort time: ",mean(bubbleResult))
-print("Quick sort time: ", mean(quickResult))
+print("Bubble sort time: ",mean(bubbleResult))
+# print("Quick sort time: ", mean(quickResult))
 # print("Merge sort time: ", mean(mergeResult))
 
 # testArray = randArray(500)

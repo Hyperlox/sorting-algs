@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Regression",
+            "request": "launch",
+            "mainClass": "Regression",
+            "projectName": "sorting-algs_759b2392"
+        },
+        {
+            "type": "java",
+            "name": "Launch regression",
+            "request": "launch",
+            "mainClass": "regression",
+            "projectName": "sorting-algs_759b2392"
+        },
+        {
+            "type": "java",
             "name": "Launch SortingAlgs",
             "request": "launch",
             "mainClass": "SortingAlgs",
